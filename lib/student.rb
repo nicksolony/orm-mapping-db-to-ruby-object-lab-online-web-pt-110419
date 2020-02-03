@@ -13,6 +13,11 @@ class Student
   def self.all
     # retrieve all the rows from the "Students" database
     # remember each row should be a new instance of the Student class
+    
+    sql = "SELECT * FROM students;"
+    DB[:conn].execute(sql)
+    self.new_from_db(row)
+    
   end
 
   def self.find_by_name(name)
@@ -21,7 +26,7 @@ class Student
     sql = <<-SQL
               SELECT * FROM students
               WHERE name = ?
-              LIMIT 1
+              LIMIT 1;
               SQL
     row = DB[:conn].execute(sql,name).first
     self.new_from_db(row)
