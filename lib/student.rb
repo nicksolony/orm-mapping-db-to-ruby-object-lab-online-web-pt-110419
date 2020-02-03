@@ -23,7 +23,7 @@ class Student
               WHERE name = ?
               LIMIT 1
               SQL
-    row = 
+    row = DB[:conn].execute(sql,name)
   end
   
   def save
